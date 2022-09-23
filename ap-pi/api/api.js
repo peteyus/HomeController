@@ -29,7 +29,7 @@ function getState(req, res) {
     console.log(`stdout: ${stdout}`);
     var splitOutput = output.split(" ");
     var state = splitOutput[splitOutput.length - 1];
-    if (state === 'power') state = 'on';
+    state = state.replace('power', 'on');;
     res.status(200).send(state);
   })
 }
