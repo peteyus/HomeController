@@ -28,7 +28,9 @@ function getState(req, res) {
     var output = stdout;
     console.log(`stdout: ${stdout}`);
     var splitOutput = output.split(" ");
-    res.status(200).send(splitOutput[splitOutput.length - 1]);
+    var state = splitOutput[splitOutput.length - 1];
+    if (state === 'power') state = 'on';
+    res.status(200).send(state);
   })
 }
 
