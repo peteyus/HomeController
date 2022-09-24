@@ -1,15 +1,19 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { EnvConfigurationService } from './services/envconfigurationservice.service';
+import { LegolightsComponent } from './legolights/legolights.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LegolightsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [{
     provide: APP_INITIALIZER,

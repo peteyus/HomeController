@@ -1,18 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
+import { ServiceConfig } from '../models/serviceconfig';
 
-export enum Environment {
-  Prod = 'prod',
-  Staging = 'staging',
-  Test = 'test',
-  Dev = 'dev',
-  Local = 'local',
-}
-
-interface Configuration {
-  apiUrl: string;
-  stage: Environment;
+export interface Configuration {
+  services: Array<ServiceConfig>
 }
 
 @Injectable({ providedIn: 'root' })
