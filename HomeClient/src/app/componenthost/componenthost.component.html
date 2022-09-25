@@ -1,0 +1,11 @@
+<ul>
+  <li *ngFor="let service of services"
+      [ngSwitch]="service.type">
+    <ng-template ngSwitchCase="legolights">
+      <app-legolights [configuration]="service"></app-legolights>
+    </ng-template>
+    <ng-template ngSwitchDefault>
+      <span>No matching type found for type {{service.type}}.</span>
+    </ng-template>
+  </li>
+</ul>

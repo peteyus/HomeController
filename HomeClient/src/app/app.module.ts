@@ -4,12 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { EnvConfigurationService } from './services/envconfigurationservice.service';
-import { LegolightsComponent } from './legolights/legolights.component';
+import { LegoLightsComponent } from './legolights/legolights.component';
+import { ComponentHostComponent } from './componenthost/componenthost.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LegolightsComponent
+    LegoLightsComponent,
+    ComponentHostComponent
   ],
   imports: [
     BrowserModule,

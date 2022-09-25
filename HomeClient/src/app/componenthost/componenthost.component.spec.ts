@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LegoLightsComponent } from './legolights.component';
+import { ComponentHostComponent } from './componenthost.component';
 
-describe('LegolightsComponent', () => {
-  let component: LegoLightsComponent;
-  let fixture: ComponentFixture<LegoLightsComponent>;
+describe('ComponenthostComponent', () => {
+  let component: ComponentHostComponent;
+  let fixture: ComponentFixture<ComponentHostComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LegoLightsComponent ]
+      declarations: [ ComponentHostComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LegoLightsComponent);
+    fixture = TestBed.createComponent(ComponentHostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
