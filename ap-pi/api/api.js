@@ -7,12 +7,11 @@ const Port = 5001;
 const app = new express();
 const cors = require('cors');
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/state', getState);
 app.post('/on', turnOn);
 app.post('/off', turnOff);
-
-app.use(cors());
 
 app.listen(Port, function () { console.log('server running on localhost:' + Port); });
 
