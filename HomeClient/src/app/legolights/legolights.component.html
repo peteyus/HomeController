@@ -1,1 +1,1 @@
-<span>Lego lights are <span *ngIf="isOn">on</span><span *ngIf="!isOn">off</span></span>
+<button (click)="toggleActivation()"><span>Lego lights are <span *ngIf="isOn">on</span><span *ngIf="!isOn">off</span></span></button> <span *ngIf="isLoading">()</span>

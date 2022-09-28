@@ -13,21 +13,34 @@ import { catchError } from 'rxjs/operators';
 export class LegoLightsComponent implements OnInit, ServiceComponent {
   name: string = "Lego Lights";
   description: string = "Controls the state of the lego lights running on the raspberry pi."
-  isOn!: boolean
-  activate(): boolean {
-    throw new Error("Method not implemented.");
+  isOn: boolean = false;
+  isLoading: boolean = false;
+  activate() {
+    this.isLoading = true;
+    //console.log('turning on lights');
+    this.callApi('on', 'post').subscribe(data => {
+      this.getStatus();
+    })
   }
-  deactivate(): boolean {
-    throw new Error("Method not implemented.");
+  deactivate() {
+    this.isLoading = true;
+    //console.log('turning off lights');
+    this.callApi('off', 'post').subscribe(data => {
+      this.getStatus();
+    })
   }
   @Input() configuration!: ServiceConfig;
 
   constructor(private http: HttpClient) {
   }
 
-  setStatus() {
+  getStatus() {
+    this.isLoading = true;
+    //console.log('getting current status');
     this.callApi('state', 'get').subscribe(data => {
       this.isOn = data.startsWith('on');
+      //console.log(`lights are ${this.isOn ? 'on' : 'off'}`)
+      this.isLoading = false;
     });
   }
 
@@ -53,6 +66,16 @@ export class LegoLightsComponent implements OnInit, ServiceComponent {
     return req;
   }
 
+  toggleActivation() {
+    switch (this.isOn) {
+      case true:
+        this.deactivate();
+        break;
+      default:
+        this.activate();
+    }
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -61,7 +84,10 @@ export class LegoLightsComponent implements OnInit, ServiceComponent {
   }
   
   ngOnInit(): void {
-    this.setStatus();
+    this.getStatus();
+    setInterval(() => {
+      this.getStatus();
+    }, 20000);
   }
 
 }
