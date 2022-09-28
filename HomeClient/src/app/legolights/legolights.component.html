@@ -1,3 +1,4 @@
 <button (click)="toggleActivation()" class="button" [ngClass]="isOn ? 'is-success' : 'is-danger'">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#00fdff" type="ball-atom" [fullScreen]="false"></ngx-spinner>
   <span>Lego lights are <span *ngIf="isOn">on</span><span *ngIf="!isOn">off</span></span>
 </button>

@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { ServiceComponent } from '../interfaces/servicecomponent';
 import { ServiceConfig } from '../models/serviceconfig';
 import { catchError } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-legolights',
@@ -16,14 +17,14 @@ export class LegoLightsComponent implements OnInit, ServiceComponent {
   isOn: boolean = false;
   isLoading: boolean = false;
   activate() {
-    this.isLoading = true;
+    this.spinner.show();
     //console.log('turning on lights');
     this.callApi('on', 'post').subscribe(data => {
       this.getStatus();
     })
   }
   deactivate() {
-    this.isLoading = true;
+    this.spinner.show();
     //console.log('turning off lights');
     this.callApi('off', 'post').subscribe(data => {
       this.getStatus();
@@ -31,16 +32,16 @@ export class LegoLightsComponent implements OnInit, ServiceComponent {
   }
   @Input() configuration!: ServiceConfig;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService) {
   }
 
   getStatus() {
-    this.isLoading = true;
+    this.spinner.show();
     //console.log('getting current status');
     this.callApi('state', 'get').subscribe(data => {
       this.isOn = data.startsWith('on');
       //console.log(`lights are ${this.isOn ? 'on' : 'off'}`)
-      this.isLoading = false;
+      this.spinner.hide();
     });
   }
 
