@@ -1,13 +1,11 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
 import { EnvConfigurationService } from './services/envconfigurationservice.service';
 import { LegoLightsComponent } from './legolights/legolights.component';
 import { ComponentHostComponent } from './componenthost/componenthost.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -18,8 +16,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    NgxSpinnerModule
   ],
   providers: [{
     provide: APP_INITIALIZER,

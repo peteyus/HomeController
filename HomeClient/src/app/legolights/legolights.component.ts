@@ -17,31 +17,31 @@ export class LegoLightsComponent implements OnInit, ServiceComponent {
   isOn: boolean = false;
   isLoading: boolean = false;
   activate() {
-    this.spinner.show();
     //console.log('turning on lights');
+    this.isLoading = true;
     this.callApi('on', 'post').subscribe(data => {
       this.getStatus();
     })
   }
   deactivate() {
-    this.spinner.show();
     //console.log('turning off lights');
+    this.isLoading = true;
     this.callApi('off', 'post').subscribe(data => {
       this.getStatus();
     })
   }
   @Input() configuration!: ServiceConfig;
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) {
+  constructor(private http: HttpClient) {
   }
 
   getStatus() {
-    this.spinner.show();
     //console.log('getting current status');
+    this.isLoading = true;
     this.callApi('state', 'get').subscribe(data => {
       this.isOn = data.startsWith('on');
       //console.log(`lights are ${this.isOn ? 'on' : 'off'}`)
-      this.spinner.hide();
+      this.isLoading = false;
     });
   }
 
